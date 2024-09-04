@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Événements</title>
+</head>
+<body>
+    <h1>Événements Disponibles</h1>
+    <ul>
+        {% for event in events %}
+            <li>
+                <a href="{% url 'buy_ticket' event.id %}">{{ event.name }} - {{ event.date }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

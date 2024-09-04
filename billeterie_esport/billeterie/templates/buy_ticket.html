@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Acheter un billet</title>
+</head>
+<body>
+    <h1>Acheter un billet pour {{ event.nom }}</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" required><br>
+
+        <label for="prenom">Prénom :</label>
+        <input type="text" id="prenom" name="prenom" required><br>
+
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="type">Type de billet :</label>
+        <select id="type" name="type" required>
+            <option value="individuel">Individuel</option>
+            <option value="multipass">Multipass</option>
+        </select><br>
+
+        <label for="jour">Jour (si billet individuel) :</label>
+        <input type="date" id="jour" name="jour"><br>
+
+        <button type="submit">Acheter</button>
+    </form>
+</body>
+</html>

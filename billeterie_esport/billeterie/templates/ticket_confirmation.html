@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirmation de l'achat</title>
+</head>
+<body>
+    <h1>Confirmation de l'achat</h1>
+    <p>Merci pour votre achat, {{ ticket.user.prenom }} {{ ticket.user.nom }} !</p>
+    <p>Type de billet : {{ ticket.type }}</p>
+    <p>Prix : {{ ticket.prix }} €</p>
+    <p>Événement : {{ ticket.event.nom }}</p>
+</body>
+</html>

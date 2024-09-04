@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'billetterie'
+    'billeterie'
 ]
 
 MIDDLEWARE = [
@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'billeterie_esport.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'billetterie_esport_db',  # Le nom de ta base de données
+        'NAME': 'billeterie_esport_db',  # Le nom de ta base de données
         'USER': 'root',  # Ton nom d'utilisateur MySQL
         'PASSWORD': 'root',  # Ton mot de passe MySQL
         'HOST': 'localhost',  # Adresse de l'hôte, 'localhost' pour une base de données locale
