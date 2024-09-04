@@ -23,6 +23,7 @@ class Event(models.Model):
 
     def get_prix(self, date):
         """Renvoie le prix en fonction de la date de l'événement"""
+        print(f"Date de l'événement : {self.date_debut}, Date demandée : {date}")
         if date == self.date_fin:
             return self.prix_finale
         return self.prix_premier_jour
@@ -44,10 +45,8 @@ class Ticket(models.Model):
 
     def save(self, *args, **kwargs):
         if self.type == 'multipass':
-            # Si c'est un Multipass, on fixe un prix unique
-            self.prix = 30  # Par exemple
+            self.prix = 30
         else:
-            # Prix variable selon la date de l'événement
             self.prix = self.event.get_prix(self.date)
         super().save(*args, **kwargs)
 
