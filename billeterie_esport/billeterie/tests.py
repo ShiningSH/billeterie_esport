@@ -145,7 +145,6 @@ class CheckoutE2ETests(LiveServerTestCase):
         self.selenium.implicitly_wait(10)
         super().setUp()
 
-        # Créer des objets nécessaires pour les tests
         self.user = User.objects.create(nom="Doe", prenom="John", email="john.doe@example.com")
         self.event = Event.objects.create(
             nom="Concert",
@@ -167,9 +166,7 @@ class CheckoutE2ETests(LiveServerTestCase):
 
     def test_checkout_process(self):
         self.selenium.get(f'{self.live_server_url}/billeterie/')
-        # Vous devrez ajuster ces sélecteurs en fonction de votre HTML réel
-        self.selenium.find_element(By.XPATH, '//button[text()="Acheter"]').click()  # Exemple de clic sur un bouton
+        self.selenium.find_element(By.XPATH, '//button[text()="Acheter"]').click()
 
-        # Assurez-vous d'atteindre la page de confirmation ou de paiement
         confirmation_message = self.selenium.find_element(By.ID, 'confirmation').text
         self.assertIn("Merci pour votre achat", confirmation_message)
