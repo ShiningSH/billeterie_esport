@@ -1,3 +1,4 @@
+<!-- billeterie/templates/billeterie/event_list.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +9,9 @@
     <h1>Événements Disponibles</h1>
     <ul>
         {% for event in events %}
-            <li>
-                <a href="{% url 'buy_ticket' event.id %}">{{ event.name }} - {{ event.date }}</a>
-            </li>
+            <li>{{ event.nom }}</li>
+        {% empty %}
+            <li>Aucun événement trouvé.</li>
         {% endfor %}
     </ul>
 </body>

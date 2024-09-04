@@ -45,7 +45,7 @@ class Ticket(models.Model):
 
     def save(self, *args, **kwargs):
         if self.type == 'multipass':
-            self.prix = 30
+            self.prix = 30  # Par exemple
         else:
             self.prix = self.event.get_prix(self.date)
         super().save(*args, **kwargs)
@@ -54,7 +54,7 @@ class Ticket(models.Model):
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     email = models.EmailField()
-    total = models.DecimalField(max_digits=10, decimal_places=2)
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)  # Valeur par défaut
     date_commande = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
