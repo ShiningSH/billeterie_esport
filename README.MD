@@ -14,7 +14,7 @@ Ce document décrit comment cloner, configurer et lancer ce projet Django, ainsi
 
    Clonez le dépôt Git sur votre machine locale :
 
-```
+```bash
 git clone https://github.com/nom_utilisateur/nom_du_projet.git cd nom_du_projet
 ````
 
@@ -23,7 +23,7 @@ git clone https://github.com/nom_utilisateur/nom_du_projet.git cd nom_du_projet
 
 Créez un environnement virtuel pour isoler les dépendances du projet :
 
-```
+```bash
 python -m venv venv
 ```
 
@@ -32,13 +32,13 @@ python -m venv venv
 
 - Sur Windows :
 
-  ```
+  ```bash
   venv\Scripts\activate
   ```
 
 - Sur macOS/Linux :
 
-  ```
+  ```bash
   source venv/bin/activate
   ```
 
@@ -46,7 +46,7 @@ python -m venv venv
 
 Installez les dépendances du projet définies dans le fichier `requirements.txt` :
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
@@ -57,16 +57,25 @@ pip install -r requirements.txt
 
 Pour créer les tables nécessaires à la base de données, exécutez les commandes suivantes :
 
-```
+```bash
 python manage.py makemigrations python manage.py migrate
 ```
 
 
-2. Charger les fixtures
+2. Créer un superutilisateur
+
+Pour accéder à l’interface d'administration de Django, vous devez créer un superutilisateur :
+
+```bash
+python manage.py createsuperuser
+```
+
+
+3. Charger les fixtures
 
 Si des fixtures (données pré-enregistrées) sont disponibles, vous pouvez les charger avec :
 
-```
+```bash
 python manage.py loaddata nom_de_la_fixture.json
 ```
 
@@ -75,7 +84,7 @@ python manage.py loaddata nom_de_la_fixture.json
 
 Pour lancer le serveur de développement Django, exécutez :
 
-```
+```bash
 python manage.py runserver
 ```
 
@@ -98,7 +107,7 @@ class NouvelleEntite(models.Model): nom = models.CharField(max_length=100) descr
 
 Une fois vos modifications effectuées, exécutez les commandes suivantes pour appliquer les migrations :
 
-```
+```bash
 python manage.py makemigrations python manage.py migrate
 ```
 
