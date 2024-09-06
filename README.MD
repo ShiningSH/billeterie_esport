@@ -79,6 +79,15 @@ Si des fixtures (données pré-enregistrées) sont disponibles, vous pouvez les 
 python manage.py loaddata nom_de_la_fixture.json
 ```
 
+4. Réinitialiser la base de données
+
+Si vous souhaitez réinitialiser la base de données en supprimant toutes les données tout en conservant la structure des tables, utilisez :
+
+```bash
+python manage.py flush
+```
+Attention : Cette commande supprimera toutes les données de la base de données, y compris celles créées par le superutilisateur. Vous serez invité à confirmer cette action.
+
 
 ## Lancer le serveur de développement
 
