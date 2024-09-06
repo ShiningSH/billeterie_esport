@@ -1,13 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <title>Confirmation de l'achat</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation d'achat</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'billeterie/style.css' %}">
 </head>
 <body>
-    <h1>Confirmation de l'achat</h1>
-    <p>Merci pour votre achat, {{ ticket.user.prenom }} {{ ticket.user.nom }} !</p>
-    <p>Type de billet : {{ ticket.type }}</p>
-    <p>Prix : {{ ticket.prix }} €</p>
-    <p>Événement : {{ ticket.event.nom }}</p>
+    <div class="container">
+        <h1>Confirmation d'achat de billet</h1>
+        <p>Merci pour votre achat, {{ ticket.user.prenom }} {{ ticket.user.nom }} !</p>
+        <p>Type de billet : {{ ticket.get_type_display }}</p>
+        <p>Événement : {{ ticket.event.nom }}</p>
+        {% if ticket.type == 'individuel' %}
+            <p>Date sélectionnée : {{ ticket.date }}</p>
+        {% endif %}
+        <p>Prix payé : {{ ticket.prix }} €</p>
+    </div>
 </body>
 </html>

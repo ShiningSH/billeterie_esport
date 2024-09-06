@@ -1,3 +1,4 @@
+# billetrie/models.py
 from django.db import models
 
 class User(models.Model):
@@ -7,7 +8,6 @@ class User(models.Model):
 
     def __str__(self):
         return f'{self.prenom} {self.nom}'
-
 
 class Event(models.Model):
     nom = models.CharField(max_length=255)
@@ -23,11 +23,9 @@ class Event(models.Model):
 
     def get_prix(self, date):
         """Renvoie le prix en fonction de la date de l'événement"""
-        print(f"Date de l'événement : {self.date_debut}, Date demandée : {date}")
         if date == self.date_fin:
             return self.prix_finale
         return self.prix_premier_jour
-
 
 class Ticket(models.Model):
     TYPE_CHOICES = [
@@ -50,7 +48,6 @@ class Ticket(models.Model):
             self.prix = self.event.get_prix(self.date)
         super().save(*args, **kwargs)
 
-
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     email = models.EmailField()
@@ -64,7 +61,6 @@ class Order(models.Model):
         """Calcule le total de la commande en fonction des tickets"""
         self.total = sum(detail.total_price for detail in self.orderdetail_set.all())
         self.save()
-
 
 class OrderDetail(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)

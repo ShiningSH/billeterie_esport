@@ -3,5 +3,5 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('billeterie/', include('billeterie.urls')),  # Le nom du dossier doit correspondre
+    path('', include('billeterie.urls')),  # Redirige vers les URL de l'application billeterie
 ]

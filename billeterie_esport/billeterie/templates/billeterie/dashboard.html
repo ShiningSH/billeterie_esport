@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'billeterie/style.css' %}">
+</head>
+<body>
+    <h1>Tableau de Bord de la Billetterie</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Événement</th>
+                <th>Nombre d’entrées individuelles</th>
+                <th>Nombre de « Multipass »</th>
+                <th>Montant total billetterie (€)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in data %}
+            <tr>
+                <td>{{ entry.event }}</td>
+                <td>{{ entry.entries_individual }}</td>
+                <td>{{ entry.entries_multipass }}</td>
+                <td>{{ entry.amount }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
