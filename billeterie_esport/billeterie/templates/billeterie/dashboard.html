@@ -6,9 +6,97 @@
     <title>Tableau de Bord</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'billeterie/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: #6200ea;
+            color: white;
+            padding: 20px 0;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2em;
+            color: white;
+        }
+
+        .table-container {
+            max-width: 90%;
+            width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1em;
+            min-width: 600px;
+            text-align: left;
+        }
+
+        thead {
+            background-color: #6200ea;
+            color: white;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+
+        tr {
+            transition: background-color 0.2s ease;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+        td {
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #6200ea;
+            color: white;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+    </style>
 </head>
 <body>
+
+<header>
     <h1>Tableau de Bord de la Billetterie</h1>
+</header>
+
+<div class="table-container">
     <table>
         <thead>
             <tr>
@@ -29,5 +117,11 @@
             {% endfor %}
         </tbody>
     </table>
+</div>
+
+<footer>
+    © 2024 Tous droits réservés.
+</footer>
+
 </body>
 </html>
