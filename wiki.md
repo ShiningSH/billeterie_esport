@@ -96,5 +96,3 @@ Feature: Achat de billets Multipass pour plusieurs jours
 Cette page Wiki présente les principaux cas d'utilisation de la billetterie Esport, avec des scénarios **BDD** décrivant les comportements attendus des fonctionnalités. Ces scénarios permettent à l'équipe technique et aux parties prenantes non techniques de **collaborer efficacement** et d'assurer que les besoins métiers sont respectés tout au long du projet.
 
 --- 
-
-Ce Wiki explique clairement les quatre use cases principaux, avec des scénarios BDD bien structurés.
