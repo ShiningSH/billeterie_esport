@@ -4,6 +4,7 @@ from django.urls import reverse
 from datetime import date
 from django.core.exceptions import ValidationError
 from django.db.models import Sum, Count
+from django.contrib.auth.decorators import user_passes_test
 
 # Afficher la liste des événements
 def event_list(request):
@@ -91,3 +92,15 @@ def dashboard(request):
     })
 
     return render(request, 'billeterie/dashboard.html', {'data': data})
+
+def is_admin(user):
+    return user.is_superuser
+
+@user_passes_test(is_admin)
+def admin_dashboard(request):
+    # Logique pour obtenir les données nécessaires
+    events = Event.objects.all()
+    context = {
+        'events': events,
+    }
+    return render(request, 'billeterie/dashboard.html', context)
