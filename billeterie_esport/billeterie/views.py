@@ -1,3 +1,4 @@
+# billeterie/views.py
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Event, Ticket, Order, OrderDetail, User
 from django.urls import reverse
@@ -90,6 +91,9 @@ def dashboard(request):
         'entries_multipass': total_entries_multipass,
         'amount': total_amount,
     })
+
+    # Pour déboguer
+    print(f"Data to be rendered: {data}")
 
     return render(request, 'billeterie/dashboard.html', {'data': data})
 

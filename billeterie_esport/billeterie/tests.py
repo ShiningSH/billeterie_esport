@@ -88,9 +88,7 @@ class EventListViewTests(TestCase):
         response = self.client.get(reverse('event_list'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.event.nom)
-"""
 
-""""
 # Test d'intégration d'une commande incluant des détails de commande :
 from django.test import TestCase
 from .models import User, Event, Ticket, Order, OrderDetail
@@ -129,48 +127,55 @@ class OrderIntegrationTests(TestCase):
         print(f'Prix ticket 1: {self.ticket1.prix}')
         print(f'Prix ticket 2: {self.ticket2.prix}')
         print(f'Total de la commande: {self.order.total}')
-        self.assertEqual(self.order.total, Decimal('240.00'))  # Ajustez en fonction du calcul correct
-"""
-"""
-# Tests de Bout en Bout (End-to-End)
-from django.test import LiveServerTestCase
+        self.assertEqual(self.order.total, Decimal('240.00')) 
+
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from billeterie.models import Event, User, Ticket
+import unittest
 
-class CheckoutE2ETests(LiveServerTestCase):
-    def setUp(self):
-        self.selenium = webdriver.Chrome()
-        self.selenium.implicitly_wait(10)
-        super().setUp()
+class TicketPurchaseTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+        cls.driver.implicitly_wait(10) 
 
-        self.user = User.objects.create(nom="Doe", prenom="John", email="john.doe@example.com")
-        self.event = Event.objects.create(
-            nom="Concert",
-            date_debut="2024-12-01",
-            date_fin="2024-12-01",
-            prix_premier_jour=100.00,
-            prix_finale=80.00
-        )
-        self.ticket = Ticket.objects.create(
-            type="individuel",
-            date=self.event.date_debut,
-            user=self.user,
-            event=self.event
-        )
+    @classmethod
+    def tearDownClass(cls):
+        cls.driver.quit()
 
-    def tearDown(self):
-        self.selenium.quit()
-        super().tearDown()
+    def test_ticket_purchase(self):
+        driver = self.driver
+        driver.get("http://localhost:8000/")
 
-    def test_checkout_process(self):
-        self.selenium.get(f'{self.live_server_url}/billeterie/')
-        self.selenium.find_element(By.XPATH, '//button[text()="Acheter"]').click()
+        # Accéder à la page de l'événement
+        event_link = driver.find_element(By.LINK_TEXT, "Concert") 
+        event_link.click()
 
-        confirmation_message = self.selenium.find_element(By.ID, 'confirmation').text
-        self.assertIn("Merci pour votre achat", confirmation_message)
-"""
+        # Remplir le formulaire d'achat
+        name_field = driver.find_element(By.NAME, "nom")
+        first_name_field = driver.find_element(By.NAME, "prenom")
+        email_field = driver.find_element(By.NAME, "email")
+        type_field = driver.find_element(By.NAME, "type")
+        date_field = driver.find_element(By.NAME, "jour")
+
+        name_field.send_keys("Doe")
+        first_name_field.send_keys("John")
+        email_field.send_keys("john.doe@example.com")
+        type_field.send_keys("individuel")
+        date_field.send_keys("2024-12-01")
+
+        # Soumettre le formulaire
+        date_field.send_keys(Keys.RETURN)
+
+        # Vérifier la confirmation
+        confirmation_message = driver.find_element(By.CSS_SELECTOR, "h1") 
+        self.assertIn("Confirmation", confirmation_message.text)  
+
+if __name__ == "__main__":
+    unittest.main()
+
 
 #Test d'achat groupé :
 from django.test import TestCase
@@ -326,4 +331,4 @@ class MultipassTicketTest(TestCase):
             self.assertEqual(ticket.user.nom, identity["nom"])
             self.assertEqual(ticket.user.prenom, identity["prenom"])
             self.assertEqual(ticket.user.email, self.buyer.email)  # Même email pour tous
-
+"""

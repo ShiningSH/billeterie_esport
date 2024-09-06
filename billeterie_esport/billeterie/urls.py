@@ -11,5 +11,5 @@ urlpatterns = [
     # Page de confirmation de l'achat du billet
     path('ticket/<int:ticket_id>/confirmation/', views.ticket_confirmation, name='ticket_confirmation'),
 
-    path('dashboard/', views.admin_dashboard, name='dashboard'),
+    path('dashboard/', views.dashboard, name='dashboard'),
 ]

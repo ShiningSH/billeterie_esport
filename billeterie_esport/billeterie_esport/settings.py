@@ -74,8 +74,8 @@ WSGI_APPLICATION = 'billeterie_esport.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-"""
-Mysql
+
+# Mysql
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -86,15 +86,16 @@ DATABASES = {
         'PORT': '3306',  # Le port MySQL, par défaut c'est 3306
     }
 }
-"""
 
+
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / "db.sqlite3",
     }
 }
-
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
