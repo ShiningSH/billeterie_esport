@@ -1,32 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acheter un billet</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'billeterie/style.css' %}">
 </head>
 <body>
-    <h1>Acheter un billet pour {{ event.nom }}</h1>
-    
-    <form method="post">
-        {% csrf_token %}
-        <label for="nom">Nom :</label>
-        <input type="text" id="nom" name="nom" required><br>
+    <div class="container">
+        <h1>Acheter un billet pour {{ event.nom }}</h1>
+        <form method="post" class="ticket-form">
+            {% csrf_token %}
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required><br>
 
-        <label for="prenom">Prénom :</label>
-        <input type="text" id="prenom" name="prenom" required><br>
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required><br>
 
-        <label for="email">Email :</label>
-        <input type="email" id="email" name="email" required><br>
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required><br>
 
-        <label for="type">Type de billet :</label>
-        <select id="type" name="type" required>
-            <option value="individuel">Individuel</option>
-            <option value="multipass">Multipass</option>
-        </select><br>
+            <label for="type">Type de billet :</label>
+            <select id="type" name="type" required>
+                <option value="individuel">Individuel</option>
+                <option value="multipass">Multipass</option>
+            </select><br>
 
-        <label for="jour">Jour (si billet individuel) :</label>
-        <input type="date" id="jour" name="jour"><br>
+            <div id="jour-selection" class="hidden">
+                <label for="jour">Jour :</label>
+                <input type="date" id="jour" name="jour"><br>
+            </div>
 
-        <button type="submit">Acheter</button>
-    </form>
+            <button type="submit">Acheter</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('type').addEventListener('change', function() {
+            var type = this.value;
+            var jourSelection = document.getElementById('jour-selection');
+            jourSelection.style.display = type === 'individuel' ? 'block' : 'none';
+        });
+    </script>
 </body>
 </html>

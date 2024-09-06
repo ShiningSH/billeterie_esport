@@ -2,10 +2,14 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # Affichage par défaut de la liste des événements
+    # Liste des événements
     path('', views.event_list, name='event_list'),
-    # Route pour l'achat de billets
+
+    # Page d'achat de billets pour un événement spécifique
     path('event/<int:event_id>/buy/', views.buy_ticket, name='buy_ticket'),
-    # Route pour la confirmation de l'achat
+
+    # Page de confirmation de l'achat du billet
     path('ticket/<int:ticket_id>/confirmation/', views.ticket_confirmation, name='ticket_confirmation'),
+
+    path('dashboard/', views.dashboard, name='dashboard'),
 ]
